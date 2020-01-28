@@ -76,11 +76,12 @@
             // 
             // cboReaders
             // 
-            this.cboReaders.Font = new System.Drawing.Font("Tahoma", 8.0F, System.Drawing.FontStyle.Regular);
+            this.cboReaders.Font = new System.Drawing.Font("Tahoma", 8F);
             this.cboReaders.Location = new System.Drawing.Point(12, 25);
             this.cboReaders.Name = "cboReaders";
-            this.cboReaders.Size = new System.Drawing.Size(256, 20);
+            this.cboReaders.Size = new System.Drawing.Size(256, 21);
             this.cboReaders.TabIndex = 14;
+            this.cboReaders.SelectedIndexChanged += new System.EventHandler(this.cboReaders_SelectedIndexChanged);
             // 
             // lblSelectReader
             // 
@@ -93,7 +94,7 @@
             // ReaderSelection
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(292, 109);
+            this.ClientSize = new System.Drawing.Size(296, 120);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnCaps);
@@ -101,14 +102,11 @@
             this.Controls.Add(this.cboReaders);
             this.Controls.Add(this.lblSelectReader);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(312, 159);
             this.MinimizeBox = false;
-#if !WindowsCE
-        this.MaximumSize = new System.Drawing.Size(312, 159);
-        this.MinimumSize = new System.Drawing.Size(312, 159);
-        this.ClientSize = new System.Drawing.Size(312, 159);
-        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-#endif
-            this.Name = "Select Reader";
+            this.MinimumSize = new System.Drawing.Size(312, 159);
+            this.Name = "ReaderSelection";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select Reader";
             this.Load += new System.EventHandler(this.ReaderSelection_Load);
             this.ResumeLayout(false);

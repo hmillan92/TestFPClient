@@ -105,5 +105,16 @@ namespace UareUSampleCSharp
         {
             btnRefresh_Click(this, new System.EventArgs());
         }
+
+        private void cboReaders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_sender.CurrentReader != null)
+            {
+                _sender.CurrentReader.Dispose();
+                _sender.CurrentReader = null;
+            }
+            _sender.CurrentReader = _readers[cboReaders.SelectedIndex];
+            this.Close();
+        }
     }
 }

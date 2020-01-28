@@ -54,7 +54,10 @@ namespace UareUSampleCSharp
 
         #region Click Event Handlers
         private ReaderSelection _readerSelection;
-        private void btnReaderSelect_Click(System.Object sender, System.EventArgs e)
+        private Verification _verification;
+
+
+        public void SeleccionarLector()
         {
             if (_readerSelection == null)
             {
@@ -67,10 +70,7 @@ namespace UareUSampleCSharp
             _readerSelection.Dispose();
             _readerSelection = null;
         }
-
-
-        private Verification _verification;
-        private void btnVerify_Click(object sender, EventArgs e)
+        public void VerifyHuella()
         {
             if (_verification == null)
             {
@@ -250,30 +250,30 @@ namespace UareUSampleCSharp
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public Bitmap CreateBitmap(byte[] bytes, int width, int height)
-        {
-            byte[] rgbBytes = new byte[bytes.Length * 3];
+        //public Bitmap CreateBitmap(byte[] bytes, int width, int height)
+        //{
+        //    byte[] rgbBytes = new byte[bytes.Length * 3];
 
-            for (int i = 0; i <= bytes.Length - 1; i++)
-            {
-                rgbBytes[(i * 3)] = bytes[i];
-                rgbBytes[(i * 3) + 1] = bytes[i];
-                rgbBytes[(i * 3) + 2] = bytes[i];
-            }
-            Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+        //    for (int i = 0; i <= bytes.Length - 1; i++)
+        //    {
+        //        rgbBytes[(i * 3)] = bytes[i];
+        //        rgbBytes[(i * 3) + 1] = bytes[i];
+        //        rgbBytes[(i * 3) + 2] = bytes[i];
+        //    }
+        //    Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 
-            BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+        //    BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
 
-            for (int i = 0; i <= bmp.Height - 1; i++)
-            {
-                IntPtr p = new IntPtr(data.Scan0.ToInt64() + data.Stride * i);
-                System.Runtime.InteropServices.Marshal.Copy(rgbBytes, i * bmp.Width * 3, p, bmp.Width * 3);
-            }
+        //    for (int i = 0; i <= bmp.Height - 1; i++)
+        //    {
+        //        IntPtr p = new IntPtr(data.Scan0.ToInt64() + data.Stride * i);
+        //        System.Runtime.InteropServices.Marshal.Copy(rgbBytes, i * bmp.Width * 3, p, bmp.Width * 3);
+        //    }
 
-            bmp.UnlockBits(data);
+        //    bmp.UnlockBits(data);
 
-            return bmp;
-        }
+        //    return bmp;
+        //}
 
         #region SendMessage
         private enum Action
@@ -297,13 +297,11 @@ namespace UareUSampleCSharp
                         {
                             txtReaderSelected.Text = ((Reader)payload).Description.SerialNumber;                           
                             btnConectar.Enabled = true;
-                            btnVerify.Enabled = true;
                         }
                         else
                         {
                             txtReaderSelected.Text = String.Empty;
                             btnConectar.Enabled = true;
-                            btnVerify.Enabled = true;
                         }
                         break;
                     default:
@@ -311,8 +309,15 @@ namespace UareUSampleCSharp
                 }
             }
         }
+
         #endregion
 
+        private void Form_Main_Load(object sender, EventArgs e)
+        {
+            SeleccionarLector();
 
+            VerifyHuella();
+
+        }
     }
 }
