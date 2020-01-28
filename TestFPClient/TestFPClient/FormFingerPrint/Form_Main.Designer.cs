@@ -79,7 +79,7 @@
             this.btnVerify.Name = "btnVerify";
             this.btnVerify.Size = new System.Drawing.Size(115, 23);
             this.btnVerify.TabIndex = 23;
-            this.btnVerify.Text = "Verificar Huella";
+            this.btnVerify.Text = "Verificar Huella.";
             this.btnVerify.Click += new System.EventHandler(this.btnVerify_Click);
             // 
             // Form_Main
