@@ -53,7 +53,6 @@
             this.btnSelect.Size = new System.Drawing.Size(115, 23);
             this.btnSelect.TabIndex = 17;
             this.btnSelect.Text = "Select";
-            this.btnSelect.Click += new System.EventHandler(this.btnReaderSelect_Click);
             // 
             // btnCaps
             // 

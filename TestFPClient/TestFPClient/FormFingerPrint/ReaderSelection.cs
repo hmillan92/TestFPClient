@@ -59,6 +59,7 @@ namespace UareUSampleCSharp
                 {
                     btnSelect.Enabled = false;
                     btnCaps.Enabled = false;
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -85,7 +86,7 @@ namespace UareUSampleCSharp
             _caps.ShowDialog();
         }
 
-        private void btnReaderSelect_Click(System.Object sender, System.EventArgs e)
+        private void LectorSeleccionado()
         {
             if (_sender.CurrentReader != null)
             {
@@ -104,17 +105,12 @@ namespace UareUSampleCSharp
         private void ReaderSelection_Load(object sender, System.EventArgs e)
         {
             btnRefresh_Click(this, new System.EventArgs());
+            
         }
 
         private void cboReaders_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_sender.CurrentReader != null)
-            {
-                _sender.CurrentReader.Dispose();
-                _sender.CurrentReader = null;
-            }
-            _sender.CurrentReader = _readers[cboReaders.SelectedIndex];
-            this.Close();
+            LectorSeleccionado();
         }
     }
 }

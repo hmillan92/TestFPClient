@@ -57,21 +57,22 @@ namespace UareUSampleCSharp
         private Verification _verification;
 
 
-        public void SeleccionarLector()
+        private void SeleccionarLector()
         {
             if (_readerSelection == null)
             {
                 _readerSelection = new ReaderSelection();
                 _readerSelection.Sender = this;
             }
-
+            
             _readerSelection.ShowDialog();
 
             _readerSelection.Dispose();
             _readerSelection = null;
         }
-        public void VerifyHuella()
+        private void VerifyHuella()
         {
+            _verification = null;
             if (_verification == null)
             {
                 _verification = new Verification();
@@ -113,15 +114,22 @@ namespace UareUSampleCSharp
             Constants.ResultCode result = Constants.ResultCode.DP_DEVICE_FAILURE;
 
             // Open reader
-            result = currentReader.Open(Constants.CapturePriority.DP_PRIORITY_COOPERATIVE);
-
-            if (result != Constants.ResultCode.DP_SUCCESS)
+            try
             {
-                MessageBox.Show("Error:  " + result);
-                reset = true;
-                return false;
-            }
+                result = currentReader.Open(Constants.CapturePriority.DP_PRIORITY_COOPERATIVE);
 
+                if (result != Constants.ResultCode.DP_SUCCESS)
+                {
+                    MessageBox.Show("Error:  " + result);
+                    reset = true;
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+            }
             return true;
         }
 
@@ -132,14 +140,22 @@ namespace UareUSampleCSharp
         /// <returns>Returns true if successful; false if unsuccessful</returns>
         public bool StartCaptureAsync(Reader.CaptureCallback OnCaptured)
         {
-            // Activate capture handler
-            currentReader.On_Captured += new Reader.CaptureCallback(OnCaptured);
-
-            // Call capture
-            if (!CaptureFingerAsync())
+            try
             {
-                return false;
+                currentReader.On_Captured += new Reader.CaptureCallback(OnCaptured);
+
+                // Call capture
+                if (!CaptureFingerAsync())
+                {
+                    return false;
+                }
             }
+            catch (Exception ex)
+            {
+                
+            }
+            // Activate capture handler
+            
 
             return true;
         }
@@ -150,8 +166,11 @@ namespace UareUSampleCSharp
         /// <param name="OnCaptured">Delegate to unhook as handler of the On_Captured event </param>
         public void CancelCaptureAndCloseReader(Reader.CaptureCallback OnCaptured)
         {
+            
             if (currentReader != null)
             {
+                object sender = null;
+                EventArgs e = null;
                 currentReader.CancelCapture();
 
                 // Dispose of reader handle and unhook reader events.
@@ -161,6 +180,8 @@ namespace UareUSampleCSharp
                 {
                     CurrentReader = null;
                 }
+
+                Form_Main_Load(sender, e);
             }
         }
 
@@ -314,10 +335,28 @@ namespace UareUSampleCSharp
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
+            
             SeleccionarLector();
 
-            VerifyHuella();
+            if (txtReaderSelected.Text != string.Empty)
+            {
+                VerifyHuella();
+            }
 
+            else
+            {
+               DialogResult r = MessageBox.Show("Lector no encontrado", "", MessageBoxButtons.RetryCancel) ;
+
+                if (r == DialogResult.Retry)
+                {
+                    Form_Main_Load(sender, e);
+                }
+
+                else if (r == DialogResult.Cancel)
+                {
+                    this.Close();
+                }
+            } 
         }
     }
 }

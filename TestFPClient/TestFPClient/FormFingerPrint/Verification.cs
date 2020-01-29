@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 using DPUruNet;
 using Entidades;
@@ -98,7 +99,14 @@ namespace UareUSampleCSharp
             catch (Exception ex)
             {
                 // Send error message, then close form
-                SendMessage(Action.SendMessage, oHelper.Error + ex.Message);                
+                SendMessage(Action.SendMessage, oHelper.Error + ex.Message);
+
+            }
+
+            if (captureResult.Data == null)
+            {
+                Thread t = new Thread(cerrar);
+                t.Start();
             }
         }
 
@@ -113,10 +121,20 @@ namespace UareUSampleCSharp
         /// <summary>
         /// Close window.
         /// </summary>
+
         private void Verification_Closed(object sender, System.EventArgs e)
         {
             _sender.CancelCaptureAndCloseReader(this.OnCaptured);
         }
+
+        void cerrar()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new System.Action(()=>this.Close()));
+            }
+        }
+
 
         #region SendMessage
         private enum Action
