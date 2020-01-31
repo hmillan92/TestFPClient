@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using DPUruNet;
@@ -115,14 +114,8 @@ namespace UareUSampleCSharp
         /// </summary>
         private void btnBack_Click(System.Object sender, System.EventArgs e)
         {
-            foreach (Process proceso in Process.GetProcesses())
-            {
-                if (proceso.ProcessName == "FormFingerPrint")
-                {
-                    proceso.Kill();
-                }
-            }
-            //Application.Exit();
+
+             Application.Exit();
            
         }
         
@@ -134,6 +127,7 @@ namespace UareUSampleCSharp
         {
             _sender.CancelCaptureAndCloseReader(this.OnCaptured);
             //sale aqui y va al main
+            _sender.txtReaderSelected.Text = "Bye";
         }
 
         void cerrar()
