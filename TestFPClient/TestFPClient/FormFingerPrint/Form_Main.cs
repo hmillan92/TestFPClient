@@ -14,6 +14,7 @@ namespace UareUSampleCSharp
 {
     public partial class Form_Main : Form
     {
+        bool switcheSalir = false;
 
         /// <summary>
         /// Holds fmds enrolled by the enrollment GUI.
@@ -72,7 +73,6 @@ namespace UareUSampleCSharp
         }
         private void VerifyHuella()
         {
-            _verification = null;
             if (_verification == null)
             {
                 _verification = new Verification();
@@ -169,8 +169,6 @@ namespace UareUSampleCSharp
             
             if (currentReader != null)
             {
-                object sender = null;
-                EventArgs e = null;
                 currentReader.CancelCapture();
 
                 // Dispose of reader handle and unhook reader events.
@@ -180,8 +178,6 @@ namespace UareUSampleCSharp
                 {
                     CurrentReader = null;
                 }
-
-                Form_Main_Load(sender, e);
             }
         }
 
@@ -335,12 +331,13 @@ namespace UareUSampleCSharp
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-            
+            bool switche = false;
             SeleccionarLector();
 
-            if (txtReaderSelected.Text != string.Empty)
-            {
+            if (currentReader != null)
+            {               
                 VerifyHuella();
+                switche = true;
             }
 
             else
@@ -356,7 +353,14 @@ namespace UareUSampleCSharp
                 {
                     this.Close();
                 }
-            } 
+            }
+
+            if (switche == true)
+            {
+
+                 Form_Main_Load(sender, e);
+            }
         }
+
     }
 }

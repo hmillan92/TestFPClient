@@ -31,6 +31,7 @@
             this.txtReaderSelected = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.btnConectar = new System.Windows.Forms.Button();
+            this.btnReconectar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtReaderSelected
@@ -61,10 +62,20 @@
             this.btnConectar.UseVisualStyleBackColor = true;
             this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
             // 
+            // btnReconectar
+            // 
+            this.btnReconectar.Location = new System.Drawing.Point(35, 58);
+            this.btnReconectar.Name = "btnReconectar";
+            this.btnReconectar.Size = new System.Drawing.Size(75, 23);
+            this.btnReconectar.TabIndex = 22;
+            this.btnReconectar.Text = "Reconectar";
+            this.btnReconectar.UseVisualStyleBackColor = true;
+            // 
             // Form_Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(257, 103);
+            this.Controls.Add(this.btnReconectar);
             this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.txtReaderSelected);
             this.Controls.Add(this.Label1);
@@ -84,5 +95,6 @@
         internal System.Windows.Forms.TextBox txtReaderSelected;
         internal System.Windows.Forms.Label Label1;
         private System.Windows.Forms.Button btnConectar;
+        private System.Windows.Forms.Button btnReconectar;
     }
 }

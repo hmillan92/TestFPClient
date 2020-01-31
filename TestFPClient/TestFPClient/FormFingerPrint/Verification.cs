@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using DPUruNet;
@@ -22,7 +23,6 @@ namespace UareUSampleCSharp
         private Operador OperadorEncontrado = new Operador();
         Funciones funciones = new Funciones();
         Helper oHelper = new Helper();
-
 
         public Verification()
         {
@@ -115,9 +115,17 @@ namespace UareUSampleCSharp
         /// </summary>
         private void btnBack_Click(System.Object sender, System.EventArgs e)
         {
-            this.Close();
+            foreach (Process proceso in Process.GetProcesses())
+            {
+                if (proceso.ProcessName == "FormFingerPrint")
+                {
+                    proceso.Kill();
+                }
+            }
+            //Application.Exit();
+           
         }
-
+        
         /// <summary>
         /// Close window.
         /// </summary>
@@ -125,6 +133,7 @@ namespace UareUSampleCSharp
         private void Verification_Closed(object sender, System.EventArgs e)
         {
             _sender.CancelCaptureAndCloseReader(this.OnCaptured);
+            //sale aqui y va al main
         }
 
         void cerrar()
@@ -168,5 +177,6 @@ namespace UareUSampleCSharp
             }
         }
         #endregion
+
     }
 }

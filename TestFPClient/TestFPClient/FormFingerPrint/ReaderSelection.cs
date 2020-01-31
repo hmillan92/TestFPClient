@@ -57,9 +57,12 @@ namespace UareUSampleCSharp
                 }
                 else
                 {
+
                     btnSelect.Enabled = false;
                     btnCaps.Enabled = false;
+                    _sender.txtReaderSelected.Text = "";
                     this.Close();
+
                 }
             }
             catch (Exception ex)

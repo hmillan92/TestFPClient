@@ -38,7 +38,7 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 4;
-            this.btnBack.Text = "Back";
+            this.btnBack.Text = "Salir";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // txtVerify
@@ -52,22 +52,20 @@
             // Verification
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(354, 262);
+            this.ClientSize = new System.Drawing.Size(358, 273);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.txtVerify);
-            this.Name = "Verification";
-            this.Text = "Verification";
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
-#if !WindowsCE
             this.MaximumSize = new System.Drawing.Size(374, 312);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(374, 312);
-            this.ClientSize = new System.Drawing.Size(374, 312);
+            this.Name = "Verification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-#endif
-            this.Load += new System.EventHandler(this.Verification_Load);
+            this.Text = "Verification";
             this.Closed += new System.EventHandler(this.Verification_Closed);
+            this.Load += new System.EventHandler(this.Verification_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
