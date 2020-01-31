@@ -330,28 +330,36 @@ namespace UareUSampleCSharp
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-
+            //metodo que abre el form de ReaderSelection que es donde detecta busca y selecciona si hay lector
             SeleccionarLector();
 
+            //si el lector es diferente de null se activa el metodo que abre el verificationform
             if (currentReader != null)
             {               
                 VerifyHuella();
                 
-                if (txtReaderSelected.Text == "Bye")
+                ///si intenta salir del formulario sin presionar el boton de salir de la aplicacion, el seguira cargando
+                ///este load del main, lo sabemos porque txtReaderSelected lo usamos desde el form Verification y desde
+                ///alla mandamos el switch con el que identificaremos si cerro el form o la application
+                if (txtReaderSelected.Text == "CerrandoVerificationForm")
                 {
                     Form_Main_Load(sender, e);
                 }
             }
 
+            ///si no es porque el lector es null y no esta conectado o no lo detecta, y mandamos un messagebox para
+            ///preguntarle al usuario si desea volver a cargar el form o desea salirse del sistema
             else
             {
                DialogResult r = MessageBox.Show("Lector no encontrado", "", MessageBoxButtons.RetryCancel) ;
 
+                //si presiona Reintentar vuelve a cargar el load del main 
                 if (r == DialogResult.Retry)
                 {
                     Form_Main_Load(sender, e);
                 }
 
+                //si presiona cancelar se sale del sistema
                 else if (r == DialogResult.Cancel)
                 {
                     this.Close();

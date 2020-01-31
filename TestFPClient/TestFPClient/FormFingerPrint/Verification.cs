@@ -102,6 +102,9 @@ namespace UareUSampleCSharp
 
             }
 
+            ///si el lector es desconectado con la ventana de verification abierta, mandamos a cerrarla automaticamente
+            ///para llamar al evento Verification_Closed y que se cargue el load del main para que salga el mensajeBox de lector
+            ///desconectado (Reintentar/Salir)
             if (captureResult.Data == null)
             {
                 Thread t = new Thread(cerrar);
@@ -126,8 +129,11 @@ namespace UareUSampleCSharp
         private void Verification_Closed(object sender, System.EventArgs e)
         {
             _sender.CancelCaptureAndCloseReader(this.OnCaptured);
-            //sale aqui y va al main
-            _sender.txtReaderSelected.Text = "Bye";
+            ///cuando el form verification es cerrado con this.close(), es decir sin cerrar la aplicacion, el manda
+            ///este parametro al sender que esta en el main y nos servira de switche para hacer la condicion en el main
+            ///que nos ayudara a capturar que paso por este metodo de cerrar ventana y no de salir de la aplicacion y
+            ///volver a cargar el evento load del main 
+            _sender.txtReaderSelected.Text = "CerrandoVerificationForm";
         }
 
         void cerrar()

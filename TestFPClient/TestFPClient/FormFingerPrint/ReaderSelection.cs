@@ -61,6 +61,8 @@ namespace UareUSampleCSharp
                     btnSelect.Enabled = false;
                     btnCaps.Enabled = false;
                     _sender.txtReaderSelected.Text = "";
+
+                    //cierra el form ReaderSelection para llamar el load del main y poder detectar que no hay lector
                     this.Close();
 
                 }
