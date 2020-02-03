@@ -105,7 +105,7 @@ namespace UareUSampleCSharp
             ///si el lector es desconectado con la ventana de verification abierta, mandamos a cerrarla automaticamente
             ///para llamar al evento Verification_Closed y que se cargue el load del main para que salga el mensajeBox de lector
             ///desconectado (Reintentar/Salir)
-            if (captureResult == null)
+            if (captureResult.ResultCode == Constants.ResultCode.DP_DEVICE_FAILURE)
             {
                 Thread t = new Thread(cerrar);
                 t.Start();
