@@ -30,6 +30,7 @@
         {
             this.btnBack = new System.Windows.Forms.Button();
             this.txtVerify = new System.Windows.Forms.TextBox();
+            this.btnConectar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -49,10 +50,21 @@
             this.txtVerify.Size = new System.Drawing.Size(339, 213);
             this.txtVerify.TabIndex = 3;
             // 
+            // btnConectar
+            // 
+            this.btnConectar.Location = new System.Drawing.Point(12, 229);
+            this.btnConectar.Name = "btnConectar";
+            this.btnConectar.Size = new System.Drawing.Size(102, 23);
+            this.btnConectar.TabIndex = 5;
+            this.btnConectar.Text = "Probar Conexion";
+            this.btnConectar.UseVisualStyleBackColor = true;
+            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
+            // 
             // Verification
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(358, 273);
+            this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.txtVerify);
             this.MaximizeBox = false;
@@ -61,7 +73,7 @@
             this.MinimumSize = new System.Drawing.Size(374, 312);
             this.Name = "Verification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Verification";
+            this.Text = "Pesaje";
             this.Closed += new System.EventHandler(this.Verification_Closed);
             this.Load += new System.EventHandler(this.Verification_Load);
             this.ResumeLayout(false);
@@ -73,5 +85,6 @@
 
         internal System.Windows.Forms.Button btnBack;
         internal System.Windows.Forms.TextBox txtVerify;
+        private System.Windows.Forms.Button btnConectar;
     }
 }

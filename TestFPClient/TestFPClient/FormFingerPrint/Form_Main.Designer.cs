@@ -30,8 +30,6 @@
         {
             this.txtReaderSelected = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
-            this.btnConectar = new System.Windows.Forms.Button();
-            this.btnReconectar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtReaderSelected
@@ -51,39 +49,17 @@
             this.Label1.TabIndex = 18;
             this.Label1.Text = "Selected Reader:";
             // 
-            // btnConectar
-            // 
-            this.btnConectar.Enabled = false;
-            this.btnConectar.Location = new System.Drawing.Point(136, 58);
-            this.btnConectar.Name = "btnConectar";
-            this.btnConectar.Size = new System.Drawing.Size(112, 23);
-            this.btnConectar.TabIndex = 21;
-            this.btnConectar.Text = "ConectarBd.";
-            this.btnConectar.UseVisualStyleBackColor = true;
-            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
-            // 
-            // btnReconectar
-            // 
-            this.btnReconectar.Location = new System.Drawing.Point(35, 58);
-            this.btnReconectar.Name = "btnReconectar";
-            this.btnReconectar.Size = new System.Drawing.Size(75, 23);
-            this.btnReconectar.TabIndex = 22;
-            this.btnReconectar.Text = "Reconectar";
-            this.btnReconectar.UseVisualStyleBackColor = true;
-            // 
             // Form_Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(257, 103);
-            this.Controls.Add(this.btnReconectar);
-            this.Controls.Add(this.btnConectar);
+            this.ClientSize = new System.Drawing.Size(257, 75);
             this.Controls.Add(this.txtReaderSelected);
             this.Controls.Add(this.Label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "U.are.U Sample C#";
+            this.Text = "Pesaje";
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -94,7 +70,5 @@
 
         internal System.Windows.Forms.TextBox txtReaderSelected;
         internal System.Windows.Forms.Label Label1;
-        private System.Windows.Forms.Button btnConectar;
-        private System.Windows.Forms.Button btnReconectar;
     }
 }

@@ -105,7 +105,7 @@ namespace UareUSampleCSharp
             ///si el lector es desconectado con la ventana de verification abierta, mandamos a cerrarla automaticamente
             ///para llamar al evento Verification_Closed y que se cargue el load del main para que salga el mensajeBox de lector
             ///desconectado (Reintentar/Salir)
-            if (captureResult.Data == null)
+            if (captureResult == null)
             {
                 Thread t = new Thread(cerrar);
                 t.Start();
@@ -178,5 +178,21 @@ namespace UareUSampleCSharp
         }
         #endregion
 
+        private void btnConectar_Click(object sender, EventArgs e)
+        {
+            bool msj;
+            Funciones funciones = new Funciones();
+            msj = funciones.ValidaConexionSQL();
+
+            if (msj != true)
+            {
+                MessageBox.Show("Error al conectar con el servidor.","Pesaje",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
+            else
+            {
+                MessageBox.Show("Conexion con el servidor exitosa.", "Pesaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

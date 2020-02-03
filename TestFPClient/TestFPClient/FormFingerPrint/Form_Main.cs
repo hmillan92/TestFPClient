@@ -83,23 +83,7 @@ namespace UareUSampleCSharp
             _verification.Dispose();
             _verification = null;
         }
-
-        private void btnConectar_Click(object sender, EventArgs e)
-        {
-            bool msj;
-            Funciones funciones = new Funciones();
-            msj = funciones.ValidaConexionSQL();
-
-            if (msj != true)
-            {
-                MessageBox.Show("Error al Conectar");
-            }
-
-            else
-            {
-                MessageBox.Show("Conectado!");
-            }
-        }
+      
 
         #endregion
 
@@ -312,12 +296,10 @@ namespace UareUSampleCSharp
                         if ((Reader)payload != null)
                         {
                             txtReaderSelected.Text = ((Reader)payload).Description.SerialNumber;                           
-                            btnConectar.Enabled = true;
                         }
                         else
                         {
                             txtReaderSelected.Text = String.Empty;
-                            btnConectar.Enabled = true;
                         }
                         break;
                     default:
@@ -351,7 +333,7 @@ namespace UareUSampleCSharp
             ///preguntarle al usuario si desea volver a cargar el form o desea salirse del sistema
             else
             {
-               DialogResult r = MessageBox.Show("Lector no encontrado", "", MessageBoxButtons.RetryCancel) ;
+               DialogResult r = MessageBox.Show("Lector no encontrado", "Pesaje", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) ;
 
                 //si presiona Reintentar vuelve a cargar el load del main 
                 if (r == DialogResult.Retry)
